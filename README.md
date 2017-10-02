@@ -27,6 +27,7 @@ All json file should be cached in the local device, and new json files should on
 5. a "favourite" function (user can star certain jobs to review later)
 
 6. admob integration & tab (1. job list 2. favourite)
+when the user click on any job post, there will be 1/10 chance to show a full-screen interestitial ads
 
 ## Design Specifications
 
