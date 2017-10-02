@@ -2,5 +2,7 @@
   "name": "hkgovjobs-ionic",
   "app_id": "f913a714",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
