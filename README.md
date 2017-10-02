@@ -12,8 +12,8 @@ Department logo mapping: https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/dept_
 
 For example, you should first download the mapping in the app, and loop through the array to find out if the current department name matches any in the map, if yes, and suppose the mapped "logoName" is logo_cedd, the image should be: https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_cedd.png . If there is no match, please use https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png as default icon.
 
-## JSON file handling
-All json file should be cached in the local device, and new json files should only be downloaded when there is a newer version from the api, otherwise, the local ones should be used.
+~~## JSON file handling
+All json file should be cached in the local device, and new json files should only be downloaded when there is a newer version from the api, otherwise, the local ones should be used.~~
 
 ## Design Specifications
 
