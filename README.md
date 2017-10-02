@@ -20,6 +20,3 @@ All json file should be cached in the local device, and new json files should on
 Theme Color: #010a43
 
 Grey: #B4B4B4
-
-Image: 
-
