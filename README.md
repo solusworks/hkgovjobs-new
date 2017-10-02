@@ -1,4 +1,4 @@
-## How to use this template
+## Technical Specifications
 
 API to fetch job posts:
 
