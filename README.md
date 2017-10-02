@@ -29,8 +29,7 @@ Reply : it will take 3 hours
 
 5. a "favourite" function (user can star certain jobs to review later)
 
-6. admob integration
-*6. tab (1. job list 2. favourite)
+6. admob integration & tab (1. job list 2. favourite)
 
 ## Design Specifications
 
