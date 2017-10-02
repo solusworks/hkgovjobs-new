@@ -16,7 +16,7 @@ For example, you should first download the mapping in the app, and loop through 
 All json file should be cached in the local device, and new json files should only be downloaded when there is a newer version from the api, otherwise, the local ones should be used.~~
 
 ## Requierd Functions
-1. a listview that shows jobs based on different department (filter)
+1. a listview that shows jobs based on different department (filter), each job post should be contained inside a card view like the android's.
 
 2. a sidemenu (same from android)
 
