@@ -1,19 +1,56 @@
 <ion-menu [content]="content">
+
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>HKGovJobs</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+  <ion-item [class.item-block-noborder]="true">Language</ion-item>
+    <button menuClose [class.item-block-bold]="true" [class.item-block-noborder]="true" ion-item (click)="ChangeLanguage('EN')">
+        English
+    </button>
+
+      <button menuClose [class.item-block-bold]="true" [class.item-block-noborder]="true" ion-item (click)="ChangeLanguage('TCH')">
+         Traditional Chinese 
+    </button>
+
+       <button  menuClose [class.item-block-bold]="true" ion-item (click)="ChangeLanguage('SCH')">
+         Simplified Chinese 
+    </button>
+
+    <ion-item [class.item-block-noborder]="true">Search by Job Type</ion-item>
+
+     <button menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true"  ion-item (click)="SearchByJobType(1)">
+        Full-Time
+    </button>
+
+     <button  menuClose [class.item-block-bold]="true"   [class.item-block-noborder]="true" ion-item (click)="SearchByJobType(2)">
+        Part-Time
+    </button>
+
+     <button menuClose [class.item-block-bold]="true" ion-item (click)="SearchByJobType(3)">
+        Intern
+    </button>
+
+    <ion-item [class.item-block-noborder]="true">Search by Department</ion-item>
+
+     <button menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true" ion-item  
+     (click)='SearchByDepartment({"deptEn":"All","deptChi":"All","logoName":"All"})'>
+       <div class="menuimg"><img  src="https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png" ></div>
+        All
       </button>
-    </ion-list>
+
+     <button menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true" ion-item *ngFor="let p of commonFunction.rootScope['departmentLogo']" 
+     (click)="SearchByDepartment(p)">
+       <div class="menuimg"><img  (error)="imageError($event)" src="https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/{{ p.logoName ? p.logoName + '.png' : '' }}" ></div>
+        {{
+         ( commonFunction.rootScope['Lang'] == undefined || commonFunction.rootScope['Lang'] == 'EN' ) ? (  p.deptEn ) : ( p.deptChi ) }}  
+      </button>
+
   </ion-content>
 
 </ion-menu>
 
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

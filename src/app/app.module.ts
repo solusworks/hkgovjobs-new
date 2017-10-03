@@ -1,33 +1,52 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
+import { MyApp } from './app.component'; 
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
+import { TabsPage } from '../pages/tabs/tabs';
+import { FavListPage } from '../pages/fav-list/fav-list';
+import { PopoverPage } from '../pages/popover/popover';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { CommonFunction } from '../providers/common-function'; 
+import { LocalStorage } from '../providers/local-storage';
+
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage
+    ItemDetailsPage,
+    ListPage,
+    TabsPage,
+    FavListPage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    HttpModule,
+    IonicModule.forRoot(MyApp,{
+    tabsHideOnSubPages: true
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage
+    ItemDetailsPage,
+    ListPage,
+    TabsPage,
+    FavListPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    LocalStorage, 
+    CommonFunction,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -3,21 +3,44 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>HKGovtJobs</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content> 
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+ 
+   <ion-card *ngFor="let item of listData"> 
+  <ion-card-content> 
+    <div class="card-title">
+ 
+  <ion-row>
+    <ion-col class="ioncol" innerHTML="{{ item.jobname }}" tappable (click)="itemTapped($event, item)">
+     
+    </ion-col>
+    
+    <ion-col align-self-end col-1 top  class="ioncolpopover" tappable (click)="presentPopover($event, item)">
+     
+       <ion-icon name="more"></ion-icon>
+   
+    </ion-col>
+  </ion-row>   
+     
+    </div>
+
+     <div tappable (click)="itemTapped($event, item)">
+
+     <img src="{{ filterItemsImg( item.deptnamejve ) }}"  (error)="imageError($event)">
+     <div class="card-subtitle" innerHTML="{{ item.deptnamejve }}"></div>
+     <p *ngIf="item.minpaym">Salary (monthly): ${{item.minpaym}}</p>
+     <p  *ngIf="item.minpayh">Salary (hourly): ${{item.minpayh}}</p> 
+    <p>Expire on: {{item.enddate}}</p>
+    <p>Job Id: {{item.jobid}}</p>
+     </div>
+    
+  </ion-card-content>
+
+</ion-card>
+  
+
 </ion-content>
