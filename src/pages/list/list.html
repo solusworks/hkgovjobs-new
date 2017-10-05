@@ -15,7 +15,8 @@
     <div class="card-title">
  
   <ion-row>
-    <ion-col class="ioncol" innerHTML="{{ item.jobname }}" tappable (click)="itemTapped($event, item)">
+    <ion-col class="ioncol" innerHTML="{{ ( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
+     ( item.cjobname ) : ( item.jobname ) ) }}" tappable (click)="itemTapped($event, item)">
      
     </ion-col>
     
@@ -30,7 +31,8 @@
 
      <div tappable (click)="itemTapped($event, item)">
 
-     <img src="{{ filterItemsImg( item.deptnamejve ) }}"  (error)="imageError($event)">
+     <img src="{{ filterItemsImg(  ( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
+     ( item.cdeptnamejve ) : ( item.deptnamejve ) )  ) }}"  (error)="imageError($event)">
      <div class="card-subtitle" innerHTML="{{ item.deptnamejve }}"></div>
      <p *ngIf="item.minpaym">Salary (monthly): ${{item.minpaym}}</p>
      <p  *ngIf="item.minpayh">Salary (hourly): ${{item.minpayh}}</p> 

@@ -24,8 +24,7 @@ export class MyApp {
 
   // make HelloIonicPage the root (or first) page
   rootPage = TabsPage;
-  pages = [];
-
+  
   constructor(
     public platform: Platform,
     public menu: MenuController,
@@ -36,25 +35,26 @@ export class MyApp {
      public events: Events
   ) {
     this.initializeApp();
-
-    // set our app's pages
-    this.pages = [
-      { title: 'Hello Ionic', component: TabsPage },
-      { title: 'My First List', component: TabsPage }
-    ]; 
+ 
   }
 
   initializeApp() { 
+ 
+    //this.commonFunction.setRootScope( 'deptSimplifiedChi', 'deptChi' );
+    this.commonFunction.setRootScope( 'deptSimplifiedChi', 'deptSimplifiedChi' );
 
     this.commonFunction.setRootScope( 'Lang', 'EN' ); // SCH, TCH 
   
+    this.commonFunction.setRootScope( 'departmentMenu', [] );
+    this.commonFunction.setRootScope( 'departmentMenuEN', []  );
+    this.commonFunction.setRootScope( 'departmentMenuSCH', []  );
+    this.commonFunction.setRootScope( 'departmentMenuTCH', []  );
+
     this.commonFunction.setRootScope( 'departmentLogo', [] );
     this.commonFunction.setRootScope( 'jobDataEN', [] );
     this.commonFunction.setRootScope( 'jobDataSCH', [] );
     this.commonFunction.setRootScope( 'jobDataTCH', [] );
  
- /* let dep =  [{"deptEn":"Department of Health","deptChi":"è¡žç”Ÿç½²","logoName":"logo_dept_of_health"},{"deptEn":"Government Logistics Department","deptChi":"æ”¿åºœç‰©æµæœå‹™ç½²","logoName":"logo_gov_logistics_dept"},{"deptEn":"Leisure and Cultural Services Department","deptChi":"åº·æ¨‚åŠæ–‡åŒ–äº‹å‹™ç½²","logoName":"logo_leisure_culture_services_dept"},{"deptEn":"Immigration Department","deptChi":"å…¥å¢ƒäº‹å‹™è™•","logoName":"logo_immd"},{"deptEn":"Department of Justice","deptChi":"å¾‹æ”¿å¸","logoName":"logo_doj"},{"deptEn":"Social Welfare Department","deptChi":"ç¤¾æœƒç¦åˆ©ç½²","logoName":"logo_social_welfare_dept"},{"deptEn":"Land Registry","deptChi":"åœŸåœ°è¨»å†Šè™•","logoName":"logo_lands_dept"},{"deptEn":"Transport Department","deptChi":"é‹è¼¸ç½²","logoName":"logo_transport_dept"},{"deptEn":"Electrical and Mechanical Services Department","deptChi":"æ©Ÿé›»å·¥ç¨‹ç½²","logoName":"logo_emsd"},{"deptEn":"Home Affairs Department","deptChi":"æ°‘æ”¿äº‹å‹™ç¸½ç½²","logoName":"logo_home_affairs_dept"},{"deptEn":"Hong Kong Police Force","deptChi":"é¦™æ¸¯è­¦å‹™è™•","logoName":"logo_hkpf"},{"deptEn":"Treasury","deptChi":"åº«å‹™ç½²","logoName":"logo_treasury"},{"deptEn":"Fire Services Department","deptChi":"æ¶ˆé˜²è™•","logoName":"logo_fire_services_dept"},{"deptEn":"Radio Television Hong Kong","deptChi":"é¦™æ¸¯é›»å°","logoName":"logo_rthk"},{"deptEn":"Agriculture, Fisheries and Conservation Department","deptChi":"æ¼è¾²è‡ªç„¶è­·ç†ç½²","logoName":"logo_agriculture_fisheries_convervation_dept"},{"deptEn":"Rating and Valuation Department","deptChi":"å·®é¤‰ç‰©æ¥­ä¼°åƒ¹ç½²","logoName":"logo_rvd"},{"deptEn":"Education Bureau","deptChi":"æ•™è‚²å±€","logoName":"logo_hksar"},{"deptEn":"Post Office","deptChi":"éƒµæ”¿ç½²","logoName":"logo_hk_post_office"},{"deptEn":"Housing Department","deptChi":"æˆ¿å±‹ç½²","logoName":"logo_housing_authority"},{"deptEn":"Judiciary","deptChi":"å¸æ³•æ©Ÿæ§‹","logoName":"logo_judiciary"},{"deptEn":"Highways Department","deptChi":"è·¯æ”¿ç½²","logoName":"logo_highways_dept"},{"deptEn":"Development Bureau","deptChi":"ç™¼å±•å±€","logoName":"logo_hksar"},{"deptEn":"Census and Statistics Department","deptChi":"æ”¿åºœçµ±è¨ˆè™•","logoName":"logo_census_stat_dept"},{"deptEn":"Water Supplies Department","deptChi":"æ°´å‹™ç½²","logoName":"logo_water_supplies_dept"},{"deptEn":"Official Receiver's Office","deptChi":"ç ´ç”¢ç®¡ç†ç½²","logoName":"logo_oro"},{"deptEn":"Office of the Communications Authority","deptChi":"é€šè¨Šäº‹å‹™ç®¡ç†å±€è¾¦å…¬å®¤","logoName":"logo_ofnaa"},{"deptEn":"Office of the Government Chief Information Officer","deptChi":"æ”¿åºœè³‡è¨Šç§‘æŠ€ç¸½ç›£è¾¦å…¬å®¤","logoName":"logo_hksar"},{"deptEn":"Legal Aid Department","deptChi":"æ³•å¾‹æ´åŠ©ç½²","logoName":"logo_lad"}];
-    this.commonFunction.setRootScope( 'departmentLogo', dep ); */
 
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -122,6 +122,10 @@ export class MyApp {
                 let responseData = data;
                // console.log(responseData); 
                 this.commonFunction.setRootScope( 'jobDataEN', responseData );
+
+                 // this.commonFunction.setRootScope( 'departmentMenu', responseData );
+
+                this.getDepartmentMenu(responseData , 'EN');
                this.events.publish('list:updated', Date.now() );
                 this.getJobsSCH();
             },
@@ -148,14 +152,14 @@ export class MyApp {
                 let responseData = data;
                // console.log(responseData); 
                 this.commonFunction.setRootScope( 'jobDataSCH', responseData );
-
+                   this.getDepartmentMenu(responseData , 'SCH');
                  this.getJobsTCH();
             },
             err => {
                 console.log('error in getJobs');
                  this.commonFunction.hideLoading();
 
-                  this.getJobsTCH();
+                 // this.getJobsTCH();
                //  console.log(err); 
                  this.commonFunction.presentToast('There is some error in data fetching, Please try again.');
                 // this.commonFunction.showAlert("There is some error in data fetching, please try again.", 'OK', (d) => {});
@@ -177,8 +181,8 @@ export class MyApp {
 
                
                // console.log(responseData); 
-                this.commonFunction.setRootScope( 'jobDataSCH', responseData );
-
+                this.commonFunction.setRootScope( 'jobDataTCH', responseData );
+                 this.getDepartmentMenu(responseData , 'TCH');
                 this.commonFunction.hideLoading();
 
 
@@ -194,25 +198,153 @@ export class MyApp {
 
 
   ChangeLanguage(type){
+
+   
+     this.events.publish('tab:defaultSelection', Date.now() );
+
     this.commonFunction.setRootScope( 'Lang', type );
+     let menu = [];
+    if( type == 'SCH' ){
+           menu = this.commonFunction.rootScope['departmentMenuSCH'];
+        
+    }else if( type == 'TCH' ){
+           menu = this.commonFunction.rootScope['departmentMenuTCH']; 
+    }else{
+          menu = this.commonFunction.rootScope['departmentMenuEN']; 
+    }
+
+     this.commonFunction.setRootScope( 'departmentMenu', menu );
+    
+
      this.events.publish('list:filtered', 'Language', { type : type } );
   }
 
   SearchByJobType(type){
+     this.events.publish('tab:defaultSelection', Date.now() );
     //1 -> full, 2 -> part, 3 -> intern 
-       this.commonFunction.setRootScope( 'Lang', 'EN' ); // reset
+      //this.commonFunction.setRootScope( 'Lang', 'EN' ); // reset
      this.events.publish('list:filtered', 'JobType', { type : type } );
 
   }
 
   SearchByDepartment(data){
-     this.commonFunction.setRootScope( 'Lang', 'EN' ); // reset
-    this.events.publish('list:filtered', 'Department', data );
+     this.events.publish('tab:defaultSelection', Date.now() );
+    //this.commonFunction.setRootScope( 'Lang', 'EN' ); // reset
+    this.events.publish('list:filtered', 'Department', {deptnamejve : data } );
   }
 
    imageError(myEvent){
     //console.log(myEvent);
     myEvent.target.src = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png' ;
   }
+
+
+  filterItemsImg(searchDepartment){
+        
+         let url = '';
+         
+         let department = this.commonFunction.rootScope['departmentLogo'];
+
+         for(let i = 0; i < department.length ; i++){
+         // console.log( this.commonFunction.rootScope['departmentLogo'][i]['deptEn'] );
+
+            if( this.commonFunction.rootScope['Lang'] == 'undefined' || this.commonFunction.rootScope['Lang'] == 'EN' ){
+                if( this.commonFunction.rootScope['departmentLogo'][i]['deptEn'].indexOf( searchDepartment ) > -1 ){
+
+                  url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/'  + this.commonFunction.rootScope['departmentLogo'][i]['logoName'] +'.png' ;
+                 break;
+                }else{
+                 url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png'; 
+                }
+            }else{
+
+               if( this.commonFunction.rootScope['Lang'] == 'TCH' ){
+
+                  if( this.commonFunction.rootScope['departmentLogo'][i]['deptChi'].indexOf( searchDepartment ) > -1 ){
+
+                      url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/'  + this.commonFunction.rootScope['departmentLogo'][i]['logoName'] +'.png' ;
+                     break;
+                    }else{
+                     url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png'; 
+                    }
+
+               }else{
+                  // sch simplified 
+                let deptSimplifiedChi = this.commonFunction.rootScope['deptSimplifiedChi'];
+
+                 if( this.commonFunction.rootScope['departmentLogo'][i][deptSimplifiedChi].indexOf( searchDepartment ) > -1 ){
+
+                      url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/'  + this.commonFunction.rootScope['departmentLogo'][i]['logoName'] +'.png' ;
+                     break;
+                    }else{
+                     url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png'; 
+                    }
+
+
+               } 
+
+            }
+
+        }  
+          
+        return url;
+ 
+  }
+
+
+  getDepartmentMenu(jobArray,lang){
+
+/*
+
+let pp = []
+   let ch = "衞生署";
+    pp.push(ch);
+    if( ! ( pp.indexOf( ch ) > -1 ) ){
+        pp.push(ch);
+    }
+   console.log(pp );
+   */
+      let filterdData = [];
+      if(lang == 'SCH'){
+
+         for(let i = 0; i < jobArray.length ; i++){
+
+            if( ! ( filterdData.indexOf(  jobArray[i].cdeptnamejve ) > -1 ) ){
+                 filterdData.push(  jobArray[i].cdeptnamejve  );
+            }
+           
+         }
+ 
+          this.commonFunction.setRootScope( 'departmentMenuSCH', filterdData );
+
+      }else if(lang == 'TCH'){
+
+         for(let i = 0; i < jobArray.length ; i++){
+           
+           if( ! ( filterdData.indexOf(  jobArray[i].cdeptnamejve ) > -1 ) ){
+                 filterdData.push(  jobArray[i].cdeptnamejve  );
+            } 
+         }
+ 
+          this.commonFunction.setRootScope( 'departmentMenuTCH', filterdData );
+
+      } else{
+          //default EN
+           for(let i = 0; i < jobArray.length ; i++){
+            if( ! ( filterdData.indexOf(  jobArray[i].deptnamejve ) > -1 ) ){
+                 filterdData.push(  jobArray[i].deptnamejve  );
+            }
+         }
+
+        
+          this.commonFunction.setRootScope( 'departmentMenuEN', filterdData );
+
+
+           this.commonFunction.setRootScope( 'departmentMenu', filterdData ); // default assign english
+
+      } 
+
+  }
+
 
 }

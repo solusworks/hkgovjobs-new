@@ -37,16 +37,17 @@
     <ion-item [class.item-block-noborder]="true">Search by Department</ion-item>
 
      <button menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true" ion-item  
-     (click)='SearchByDepartment({"deptEn":"All","deptChi":"All","logoName":"All"})'>
+     (click)='SearchByDepartment( "All" )'>
        <div class="menuimg"><img  src="https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png" ></div>
-        All
+        <span>All</span>
       </button>
 
-     <button menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true" ion-item *ngFor="let p of commonFunction.rootScope['departmentLogo']" 
+     <button menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true" ion-item *ngFor="let p of commonFunction.rootScope['departmentMenu']" 
      (click)="SearchByDepartment(p)">
-       <div class="menuimg"><img  (error)="imageError($event)" src="https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/{{ p.logoName ? p.logoName + '.png' : '' }}" ></div>
-        {{
-         ( commonFunction.rootScope['Lang'] == undefined || commonFunction.rootScope['Lang'] == 'EN' ) ? (  p.deptEn ) : ( p.deptChi ) }}  
+       <div class="menuimg"> 
+        <img src="{{ filterItemsImg( p ) }}"  (error)="imageError($event)">
+        </div>
+          <span innerHTML="{{ p  }}"></span> 
       </button>
 
   </ion-content>

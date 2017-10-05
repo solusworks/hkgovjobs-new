@@ -27,12 +27,13 @@ export class ListPage {
       console.log('list:filtered');
        this.filterItems( type, data );
     });
+     console.log('list constructor');
 
   }
 
   ionViewWillEnter(){
     console.log('ionViewWillEnter');
-   // this.initializeItems();
+     //this.initializeItems();
   }
 
 
@@ -56,10 +57,18 @@ export class ListPage {
     // set val to the value of the searchbar
     let val = ev.target.value;
 
+    let jobname = '';
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.listData = this.listData.filter((item) => {
-        return (item.jobname.toLowerCase().indexOf(val.toLowerCase()) > -1);
+
+        if( this.commonFunction.rootScope['Lang'] == 'SCH' || this.commonFunction.rootScope['Lang'] == 'TCH' ){
+          jobname = item.cjobname.toLowerCase();
+        } else{
+           jobname = item.jobname.toLowerCase();
+        }
+
+        return ( jobname.indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -79,7 +88,7 @@ export class ListPage {
          // console.log( this.commonFunction.rootScope['departmentLogo'][i]['deptEn'] );
 
             if( this.commonFunction.rootScope['Lang'] == 'undefined' || this.commonFunction.rootScope['Lang'] == 'EN' ){
-                if( this.commonFunction.rootScope['departmentLogo'][i]['deptEn'].toLowerCase().indexOf( searchDepartment.toLowerCase() ) > -1 ){
+                if( this.commonFunction.rootScope['departmentLogo'][i]['deptEn'].indexOf( searchDepartment ) > -1 ){
 
                   url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/'  + this.commonFunction.rootScope['departmentLogo'][i]['logoName'] +'.png' ;
                  break;
@@ -87,13 +96,32 @@ export class ListPage {
                  url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png'; 
                 }
             }else{
-                 if( this.commonFunction.rootScope['departmentLogo'][i]['deptChi'].toLowerCase().indexOf( searchDepartment.toLowerCase() ) > -1 ){
 
-                  url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/'  + this.commonFunction.rootScope['departmentLogo'][i]['logoName'] +'.png' ;
-                 break;
-                }else{
-                 url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png'; 
-                }
+               if( this.commonFunction.rootScope['Lang'] == 'TCH' ){
+
+                  if( this.commonFunction.rootScope['departmentLogo'][i]['deptChi'].indexOf( searchDepartment ) > -1 ){
+
+                      url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/'  + this.commonFunction.rootScope['departmentLogo'][i]['logoName'] +'.png' ;
+                     break;
+                    }else{
+                     url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png'; 
+                    }
+
+               }else{
+                  // sch simplified 
+                let deptSimplifiedChi = this.commonFunction.rootScope['deptSimplifiedChi'];
+
+                 if( this.commonFunction.rootScope['departmentLogo'][i][deptSimplifiedChi].indexOf( searchDepartment ) > -1 ){
+
+                      url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/'  + this.commonFunction.rootScope['departmentLogo'][i]['logoName'] +'.png' ;
+                     break;
+                    }else{
+                     url = 'https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png'; 
+                    }
+
+
+               } 
+
             }
 
         }  
@@ -129,7 +157,8 @@ export class ListPage {
    }else{
       this.listData = this.commonFunction.rootScope['jobDataEN'];
    }  
-
+ 
+  //alert(  this.listData.length );
 
       if( type == 'JobType'){
 
@@ -148,20 +177,19 @@ export class ListPage {
       }else if(  type == 'Department' ){
 
         let departmentMatching = '';
+         departmentMatching = data.deptnamejve;
 
-            if( this.commonFunction.rootScope['Lang'] == 'undefined' || this.commonFunction.rootScope['Lang'] == 'EN' ){
-              departmentMatching = data.deptEn ;
-           }else if(  this.commonFunction.rootScope['Lang'] == 'SCH' ){
-               departmentMatching = data.deptChi ;
-           }else if(  this.commonFunction.rootScope['Lang'] == 'TCH' ){
-               departmentMatching = data.deptChi ;
-           }else{
-               departmentMatching = data.deptEn ;
-           }
-
-         if ( departmentMatching && data.deptEn != 'All' ) {
+         let dept = '';
+         if ( departmentMatching && departmentMatching != 'All' ) {
             this.listData = this.listData.filter((item) => {
-            return (item.deptnamejve.toLowerCase().indexOf(departmentMatching.toLowerCase()) > -1);
+
+        if( this.commonFunction.rootScope['Lang'] == 'SCH' || this.commonFunction.rootScope['Lang'] == 'TCH' ){
+          dept = item.cdeptnamejve;
+        } else{
+           dept = item.deptnamejve;
+        }
+
+            return (dept.indexOf(departmentMatching) > -1);
             })
           }
 

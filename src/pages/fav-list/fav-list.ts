@@ -24,6 +24,8 @@ export class FavListPage {
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     } */
+
+      console.log('fav constructor');
   }
 
   itemTapped(event, item) {
