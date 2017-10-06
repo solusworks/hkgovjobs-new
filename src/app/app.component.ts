@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav, Events } from 'ionic-angular';
 
 import { TabsPage } from '../pages/tabs/tabs';
-
+ 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommonFunction } from '../providers/common-function';  
@@ -13,7 +13,7 @@ import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
 
- 
+
 
 
 @Component({
@@ -23,7 +23,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = TabsPage;
+  rootPage:any; 
   
   constructor(
     public platform: Platform,
@@ -35,7 +35,8 @@ export class MyApp {
      public events: Events
   ) {
     this.initializeApp();
- 
+
+    this.rootPage = TabsPage; 
   }
 
   initializeApp() { 

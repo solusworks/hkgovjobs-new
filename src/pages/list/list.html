@@ -33,7 +33,8 @@
 
      <img src="{{ filterItemsImg(  ( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
      ( item.cdeptnamejve ) : ( item.deptnamejve ) )  ) }}"  (error)="imageError($event)">
-     <div class="card-subtitle" innerHTML="{{ item.deptnamejve }}"></div>
+     <div class="card-subtitle" innerHTML="{{ ( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
+     ( item.cdeptnamejve ) : ( item.deptnamejve ) ) }}"></div>
      <p *ngIf="item.minpaym">Salary (monthly): ${{item.minpaym}}</p>
      <p  *ngIf="item.minpayh">Salary (hourly): ${{item.minpayh}}</p> 
     <p>Expire on: {{item.enddate}}</p>
