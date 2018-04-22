@@ -36,7 +36,8 @@ import { KHChatModule } from '../components/khchat.module';
       tabsHideOnSubPages: true
     }),
     khdsModule
-    , khmoreModule, khadsModule, KHChatModule],
+    // , khmoreModule
+    ,khadsModule, KHChatModule],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -65,6 +66,6 @@ export class AppModule { }
 import { ComponentsModule as khdsModule } from "khds";
 import { GovjobsProvider } from '../providers/govjobs';
 import { LangProvider } from '../providers/lang';
-import { ComponentsModule as khmoreModule } from "khmore";
+// import { ComponentsModule as khmoreModule } from "khmore";
 import { ComponentsModule as khadsModule } from "khads";
 //import { ComponentsModule as khverModule  } from "khver";

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Events, Tabs } from 'ionic-angular';
 import { FavListPage } from '../../pages/fav-list/fav-list';
 import { ListPage } from '../../pages/list/list';
-import { KhmorePage } from 'khmore';
+// import { KhmorePage } from 'khmore';
 import { ChatPage } from '../../components/khchat.module';
 
 @Component({
