@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title> Forum </ion-title>
+
+    <ion-buttons start>
+      <button *ngIf="authData.isUserAuthenticated()" ion-button icon-only (click)="showProfilePage()">
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <a button ion-button icon-only (click)="createChat()">
+        <ion-icon name="add"></ion-icon>
+      </a>
+    </ion-buttons>
+
+  </ion-navbar>
+
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item (click)="openRoom(event.name, event.key)" *ngFor="let event of pubList">
+      <strong> {{event?.name}} </strong>
+    </ion-item>
+
+  </ion-list>
+
+
+</ion-content>

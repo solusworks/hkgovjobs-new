@@ -48,14 +48,14 @@ export class PopoverPage {
      }
      this.isFav = false;
 
-     this.commonFunction.presentToast('Removed from favourites');
+    //  this.commonFunction.presentToast('Removed from favourites');
 
     }else{
     
       let currentId = this.navParams.data.jobid;
        favArr.push( currentId  );
       this.isFav = true;
-       this.commonFunction.presentToast('Added to favourites');
+      //  this.commonFunction.presentToast('Added to favourites');
     }  
     this.localStorage.setObject('favJobIds', favArr );
        console.log( this.localStorage.getObject('favJobIds' , '[]' ) );  

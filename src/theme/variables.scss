@@ -101,7 +101,7 @@ $colors: (
     margin: 2px 0; 
 }
 
-ion-card img{
+ion-card .thumbnail{
 	width: 15px !important;
     float: left;
     padding-top: 5px;
@@ -140,4 +140,10 @@ page-item-details .card-content-md {
 
  page-item-details .card-content-md .detailheading{
   font-weight : 500 !important;
+ }
+
+ .starfav{color : #ffa64d;}
+ .detailVal{
+     padding-left: 30px;
+    padding-top: 5px;
  }

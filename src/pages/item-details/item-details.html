@@ -1,270 +1,143 @@
 <ion-header>
   <ion-navbar>
-    <button menuToggle *ngIf="!item">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Position Detail</ion-title>
+
+   <ion-buttons start>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  </ion-buttons>
+  
+<ion-title>Position Detail</ion-title>
+
+  <ion-buttons end>
+      <button ion-button icon-only  (click)="FavUnfavStar()">
+        <ion-icon *ngIf=" item.star ? true : false "  name="star" class="starfav"></ion-icon> 
+          <ion-icon *ngIf=" item.star ? false : true " name="star-outline" ></ion-icon>
+      </button> 
+    </ion-buttons>
+ 
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  
-  <ion-card> 
-  <ion-card-content> 
-    <ion-row>
-    <ion-col class="detailheading" col-4>
-      Job Id:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ item.jobid }}">
-     
-    </ion-col>
-  </ion-row>  
-  </ion-card-content> 
-
-</ion-card> 
+<ion-content> 
 
 <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Depart-<br>ment:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cdeptnamejve ) : ( item.deptnamejve ) ) }}">
-      
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card> 
-
- <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Job Title:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cjobname ) : ( item.jobname ) ) }}">
-     
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Job Id:</div>   
+<div class="detailVal" innerHTML="{{ item.jobid }}"> </div>
+</ion-card-content>  
+</ion-card>  
 
 
- <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Salary:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.centrypay ) : ( item.entrypay ) ) }}">
-     
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>   
-
-  <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Entry<br>Require-<br>ments:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.centreq ) : ( item.entreq ) ) }}">
-      
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>  
-
-
-   <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Duties:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cduties ) : ( item.duties ) ) }}">
-      
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card> 
-
-
-
-    <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Terms of<br>Appoint-<br>ment:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cappterm ) : ( item.appterm ) ) }}">
-     
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>   
+<ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Department:</div>   
+<div class="detailVal" innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?   ( item.cdeptnamejve ) : ( item.deptnamejve ) ) }}"> </div>
+</ion-card-content>  
+</ion-card> 
  
 
-    <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      General<br>Notes:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cappnotes ) : ( item.appnotes ) ) }}">
-    
-    </ion-col>
-  </ion-row>  
+<ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Job Title:</div>   
+<div class="detailVal"  innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  ( item.cjobname ) : ( item.jobname ) ) }}"> </div>
+</ion-card-content>  
+</ion-card> 
   
-  </ion-card-content>
- </ion-card>   
-
-    <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      How to<br>apply:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cappmethod ) : ( item.appmethod ) ) }}">
-     
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>   
 
   <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Enquiry<br>Address:     
-    </ion-col>
-    
-    <ion-col  innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cenqaddr ) : ( item.enqaddr ) ) }}">
-     
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>  
+<ion-card-content> 
+<div class="detailheading" >Salary:</div>   
+<div class="detailVal" innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  ( item.centrypay ) : ( item.entrypay ) ) }}"> </div>
+</ion-card-content>  
+</ion-card> 
+ 
+
+   <ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Entry Requirement:</div>   
+<div class="detailVal" innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?   ( item.centreq ) : ( item.entreq ) ) }}"> </div>
+</ion-card-content>  
+</ion-card> 
+ 
 
 
    <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Enquiry<br>Telephone:     
-    </ion-col>
-    
-    <ion-col  innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cenqtel ) : ( item.enqtel ) ) }}">
-      
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>  
+<ion-card-content> 
+<div class="detailheading" >Duties:</div>   
+<div class="detailVal" innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  ( item.cduties ) : ( item.duties ) ) }}"> </div>
+</ion-card-content>  
+</ion-card> 
+ 
 
    <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      deadline:     
-    </ion-col>
-    
-    <ion-col  innerHTML="{{ item.enddate }}">
-      
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>  
+<ion-card-content> 
+<div class="detailheading" >Terms of Appointment:</div>   
+<div class="detailVal" innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?   ( item.cappterm ) : ( item.appterm ) ) }}"> </div>
+</ion-card-content>  
+</ion-card>  
+ 
+   <ion-card> 
+<ion-card-content> 
+<div class="detailheading" >General Notes:</div>   
+<div class="detailVal"  innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  ( item.cappnotes ) : ( item.appnotes ) ) }}"> </div>
+</ion-card-content>  
+</ion-card>  
+ 
+
+   <ion-card> 
+<ion-card-content> 
+<div class="detailheading" >How to apply:</div>   
+<div class="detailVal"  innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?   ( item.cappmethod ) : ( item.appmethod ) ) }}"> </div>
+</ion-card-content>  
+</ion-card>  
+ 
+<ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Enquiry Address:</div>   
+<div class="detailVal"  innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  ( item.cenqaddr ) : ( item.enqaddr ) ) }}"> </div>
+</ion-card-content>  
+</ion-card>  
+ 
+
+ 
+<ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Enquiry Telephone:</div>   
+<div class="detailVal"  innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  ( item.cenqtel ) : ( item.enqtel ) ) }}"> </div>
+</ion-card-content>  
+</ion-card>  
+ 
+
+ <ion-card> 
+<ion-card-content> 
+<div class="detailheading" >deadline:</div>   
+<div class="detailVal"  innerHTML="{{ item.enddate }}"> </div>
+</ion-card-content>  
+</ion-card>  
 
 
-    <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Newspape<br>r(s) Adver-tised and Date(s):     
-    </ion-col>
-    
-    <ion-col  innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cnewspaper ? item.cnewspaper : 'N/A' ) : ( item.newspaper ? item.newspaper : 'N/A' ) ) }}">
-     
-    </ion-col> 
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>  
+ <ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Newspaper(s) Adver-tised and Date(s):</div>   
+<div class="detailVal" innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?   ( item.cnewspaper ? item.cnewspaper : 'N/A' ) : ( item.newspaper ? item.newspaper : 'N/A' ) ) }}"> </div>
+</ion-card-content>  
+</ion-card>  
+ 
+ <ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Application via internet:</div>   
+<div class="detailVal" innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  ( item.cdepturl ? item.cdepturl : 'N/A' ) : (  item.depturl ? item.depturl : 'N/A' ) ) }}"> </div>
+</ion-card-content>  
+</ion-card>  
+ 
 
-    <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Applica<br>tion via<br>internet:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{ PrettyPrint( ( commonFunction.rootScope['Lang'] == 'SCH' || commonFunction.rootScope['Lang'] == 'TCH' ) ?  
-     ( item.cdepturl ? item.cdepturl : 'N/A' ) : (  item.depturl ? item.depturl : 'N/A' ) ) }}">
-     
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>  
-
-     <ion-card> 
-  <ion-card-content> 
-   
-  <ion-row>
-    <ion-col class="detailheading" col-4>
-      Adver-<br>tising<br>Date:     
-    </ion-col>
-    
-    <ion-col innerHTML="{{  item.startdate   }}">
-     
-    </ion-col>
-  </ion-row>  
-  
-  </ion-card-content>
- </ion-card>  
+  <ion-card> 
+<ion-card-content> 
+<div class="detailheading" >Advertising Date:</div>   
+<div class="detailVal" innerHTML="{{  item.startdate   }}"> </div>
+</ion-card-content>  
+</ion-card>  
+ 
 
 </ion-content>

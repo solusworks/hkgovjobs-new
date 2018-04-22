@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <!-- <ion-list-header>
+      Personal Information
+    </ion-list-header> -->
+
+    <!-- <ion-item (click)="takePicture()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            <img src="{{userP}}" />
+          </ion-col>
+          <ion-col class="placeholder-profile" (click)="updateP()">
+            <span>
+              Tap here to update.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item> -->
+
+    <ion-item (click)="updateName()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            Username
+          </ion-col>
+          <!-- <ion-col *ngIf="userProfile?.firstName || userProfile?.lastName">
+            {{userProfile?.firstName}} {{userProfile?.lastName}}
+          </ion-col> -->
+          <ion-col *ngIf="userProfile?.firstName">
+            {{userProfile?.firstName}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.firstName">
+            <span>
+              <!-- Tap here to edit. -->
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-label class="dob-label">Date of Birth</ion-label>
+      <ion-datetime displayFormat="YYYY,MMM,D" pickerFormat="YYYY MMM D" [(ngModel)]="birthDate" (ionChange)="updateDOB(birthDate)"></ion-datetime>
+    </ion-item> -->
+
+    <!-- <ion-item (click)="updateEmail()"> -->
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            Email
+          </ion-col>
+          <ion-col width-50 *ngIf="userProfile?.email">
+            {{userProfile?.email}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.email">
+            <span>
+              <!-- Tap here to edit. -->
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            Password
+          </ion-col>
+          <ion-col class="placeholder-profile">
+            <span>
+              ********
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item> -->
+  </ion-list>
+
+  <button ion-button icon-only (click)="logOut()" style="width: 100%">
+    Logout
+  </button>
+
+</ion-content>

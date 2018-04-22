@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<!-- <ion-menu [content]="content">
 
   <ion-header>
     <ion-toolbar>
@@ -36,22 +36,31 @@
 
     <ion-item [class.item-block-noborder]="true">Search by Department</ion-item>
 
+
      <button menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true" ion-item  
      (click)='SearchByDepartment( "All" )'>
        <div class="menuimg"><img  src="https://s3-ap-northeast-1.amazonaws.com/hkgovjobs/images/dept_logos/logo_hksar.png" ></div>
         <span>All</span>
       </button>
 
-     <button menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true" ion-item *ngFor="let p of commonFunction.rootScope['departmentMenu']" 
-     (click)="SearchByDepartment(p)">
-       <div class="menuimg"> 
-        <img src="{{ filterItemsImg( p ) }}"  (error)="imageError($event)">
+       <div menuClose [class.item-block-bold]="true"  [class.item-block-noborder]="true" class="item item-block item-md" tappable 
+    *ngFor="let p of commonFunction.rootScope['departmentMenu']" (click)="SearchByDepartment(p)" >  
+     <div class="item-inner"><div class="input-wrapper">
+     <div class="label label-md"> 
+       <div class="menuimg">
+      <img src="{{ filterItemsImg( p ) }}"  (error)="imageError($event)">
+       </div>
+         <span innerHTML="{{ p  }}"></span> 
         </div>
-          <span innerHTML="{{ p  }}"></span> 
-      </button>
+        </div></div>
+      </div>
+       
 
   </ion-content>
 
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav> -->
+
+<!-- MasterPage -->
+<ion-nav [root]="rootPage" swipeBackEnabled="false"></ion-nav>
