@@ -46,7 +46,7 @@ platform :android do
   lane :cDeploy do
     cordova(
       platform: 'android',
-      keystore_path: '/home/wkhon/Desktop/ionic/keys/old/keystore.jks',
+      keystore_path: '/Users/keithhon/Desktop/hkgovjobs/keys/keystore.jks',
       keystore_alias: 'password',
       keystore_password: 'Aa27995701'
     )      
@@ -56,7 +56,7 @@ platform :android do
   lane :cRelease do
     cordova(
       platform: 'android',
-      keystore_path: '/home/wkhon/Desktop/ionic/keys/old/keystore.jks',
+      keystore_path: '/Users/keithhon/Desktop/hkgovjobs/keys/keystore.jks',
       keystore_alias: 'password',
       keystore_password: 'Aa27995701'
     )  

@@ -3,8 +3,8 @@ export var CONFIG = {
   "android": {
     "appId": "com.solusworks.hkgovjobs",
     "appStoreUrl": "https://play.google.com/store/apps/details?id=com.solusworks.hkgovjobs",
-    "banner_ad": "ca-app-pub-7412280034667957/5479406365",
-    "interstitial": "ca-app-pub-7412280034667957/6909830119"
+    "banner_ad": "ca-app-pub-6482189929287789/2648010268",
+    "interstitial": "ca-app-pub-6482189929287789/6810616550"
   },
   "ios": {
     "appId": "id1249629525",
