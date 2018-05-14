@@ -9,8 +9,8 @@ export var CONFIG = {
   "ios": {
     "appId": "id1249629525",
     "appStoreUrl": "https://play.google.com/store/apps/details?id=com.solusworks.hkgovjobs",
-    "banner_ad": "ca-app-pub-7412280034667957/6496796957",
-    "interstitial": "ca-app-pub-7412280034667957/9343410003"
+    "banner_ad": "ca-app-pub-6482189929287789/6719692575",
+    "interstitial": "ca-app-pub-6482189929287789/6810616550"
   },
   "camLocUrl": "http://s3-ap-northeast-1.amazonaws.com/hkroadcam24x7/list_prod.json",
   "awsDirUrl": "https://s3-ap-northeast-1.amazonaws.com/hkroadcam24x7",
